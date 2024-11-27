@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Siti Nur Haida</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .clock {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 10px solid #333;
+            border-radius: 50%;
+            margin: 20px auto;
+            background: white;
+        }
+        .hand {
+            position: absolute;
+            background: #333;
+            transform-origin: bottom;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%) scaleX(-1);
+        }
+        .hour {
+            height: 50px;
+            width: 6px;
+            background: #333;
+            z-index: 3;
+        }
+        .minute {
+            height: 70px;
+            width: 4px;
+            background: #666;
+            z-index: 2;
+        }
+        .second {
+            height: 90px;
+            width: 2px;
+            background: red;
+            z-index: 1;
+        }
+        .numbers {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        .number {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color:#F0C1E1;">
+        <div class="container">
+            <a class="navbar-brand" href="#">SITI NUR HAIDA</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="jumbotron text-center">
+        <img src="img/haida1.jpg" style="width: 200px;">
+        <h1 class="display-4">Hello Guys</h1>
+        <p class="lead">Perkenalkan Nama Saya SITI NUR HAIDA. Mahasiswi Kampus STIKOM MUHAMMADIYAH BATAM Program Studi Teknik Informatika</p>
+    </section>
+
+    <!-- About Section -->
+    <div class="container">
+        <h1>PROGRAM</h1>
+        <div class="row">
+            <!-- Hello World Card -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Hello World</h5>
+                        <p>Hello World adalah contoh program sederhana yang biasanya digunakan untuk memperkenalkan dasar-dasar pemrograman.</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#helloWorldModal">
+                            Tampilkan Hello World
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Luas Persegi Panjang Card -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Luas Persegi Panjang</h5>
+                        <p>Program ini mencari luas dari persegi panjang.</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#luasPersegiModal">
+                            Hitung Luas
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segitiga Bintang Card -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Segitiga Bintang</h5>
+                        <p>Program ini mencetak segitiga bintang, contoh yang umum digunakan dalam pembelajaran pemrograman.</p>
+                        <div class="form-group">
+                            <label for="rowInput">Masukkan jumlah baris:</label>
+                            <input type="number" class="form-control" id="rowInput" min="1">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="generateBtn">Tampilkan Segitiga</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jam Dinding Card -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Jam Dinding Analog</h5>
+                        <p>Program ini menampilkan jam dinding analog yang menunjukkan waktu saat ini.</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jamModal" onclick="updateClock()">
+                            Lihat Jam
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk Hello World -->
+    <div class="modal fade" id="helloWorldModal" tabindex="-1" role="dialog" aria-labelledby="helloWorldLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helloWorldLabel">Hello World</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Hello World!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk Luas Persegi Panjang -->
+    <div class="modal fade" id="luasPersegiModal" tabindex="-1" role="dialog" aria-labelledby="luasPersegiLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="luasPersegiLabel">Luas Persegi Panjang</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Masukkan panjang dan lebar:</p>
+                    <input type="number" id="panjang" placeholder="Panjang" class="form-control mb-2">
+                    <input type="number" id="lebar" placeholder="Lebar" class="form-control mb-2">
+                    <button type="button" class="btn btn-success" onclick="hitungLuas()">Hitung</button>
+                    <div id="luasResult" class="mt-2"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk Segitiga Bintang -->
+    <div class="modal fade" id=" resultModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hasil Segitiga Bintang</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="resultContent"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal untuk Jam Dinding Analog -->
+<div class="modal fade" id="jamModal" tabindex="-1" role="dialog" aria-labelledby="jamLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jamLabel">Jam Dinding Analog</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="clock">
+                    <div class="hand hour" id="hourHand"></div>
+                    <div class="hand minute" id="minuteHand"></div>
+                    <div class="hand second" id="secondHand"></div>
+                    <div class="numbers">
+                        <!-- Posisi angka melingkar -->
+                        <div class="number" style="top: 10%; left: 50%; transform: translate(-50%, -50%) rotate(0deg);">12</div>
+                        <div class="number" style="top: 17%; left: 70%; transform: translate(-50%, -50%) rotate(0deg);">1</div>
+                        <div class="number" style="top: 32%; left: 85%; transform: translate(-50%, -50%) rotate(0deg);">2</div>
+                        <div class="number" style="top: 50%; left: 90%; transform: translate(-50%, -50%) rotate(0deg);">3</div>
+                        <div class="number" style="top: 68%; left: 83%; transform: translate(-50%, -50%) rotate(0deg);">4</div>
+                        <div class="number" style="top: 83%; left: 70%; transform: translate(-50%, -50%) rotate(0deg);">5</div>
+                        <div class="number" style="top: 90%; left: 50%; transform: translate(-50%, -50%) rotate(0deg);">6</div>
+                        <div class="number" style="top: 83%; left: 31%; transform: translate(-50%, -50%) rotate(0deg);">7</div>
+                        <div class="number" style="top: 68%; left: 17%; transform: translate(-50%, -50%) rotate(0deg);">8</div>
+                        <div class="number" style="top: 50%; left: 10%; transform: translate(-50%, -50%) rotate(0deg);">9</div>
+                        <div class="number" style="top: 32%; left: 17%; transform: translate(-50%, -50%) rotate(0deg);">10</div>
+                        <div class="number" style="top: 15%; left: 31%; transform: translate(-50%, -50%) rotate(0deg);">11</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        const secondDeg = ((seconds / 60) * 360) - 90; // Adjusted for starting position
+        const minuteDeg = ((minutes / 60) * 360 + ((seconds / 60) * 6)) + 360; // Adjusted for starting position
+        const hourDeg = ((hours / 12) * 360 + ((minutes / 60) * 30)) + 360; // Adjusted for starting position
+
+        document.getElementById('secondHand').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+        document.getElementById('minuteHand').style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+        document.getElementById('hourHand').style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+    }
+
+    // Set interval to update clock every second
+    setInterval(updateClock, 1000);
+
+    // Add event listener to modal
+    $('#jamModal').on('shown.bs.modal', function() {
+        updateClock();
+    });
+</script>
+</body>
+</html>
